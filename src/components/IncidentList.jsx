@@ -9,6 +9,7 @@ import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';
 import 'primereact/resources/themes/tailwind-light/theme.css';          
 import 'primeicons/primeicons.css';                        
 import EditIncidentModal from './EditIncidentModal';
+import dayjs from 'dayjs';
 
 const IncidentList = ({ incidents, fetchIncidents }) => {
   const navigate = useNavigate();
@@ -18,7 +19,8 @@ const IncidentList = ({ incidents, fetchIncidents }) => {
     description: { value: null, matchMode: FilterMatchMode.CONTAINS },
     location: { value: null, matchMode: FilterMatchMode.CONTAINS },
     status: { value: null, matchMode: FilterMatchMode.CONTAINS },
-    userId: { value: null, matchMode: FilterMatchMode.CONTAINS }
+    userId: { value: null, matchMode: FilterMatchMode.CONTAINS },
+    createdAt: { value: null, matchMode: FilterMatchMode.CONTAINS }
   });
 
   const [selectedIncident, setSelectedIncident] = useState(null);
@@ -47,14 +49,19 @@ const IncidentList = ({ incidents, fetchIncidents }) => {
     );
   };
 
+  const dateBodyTemplate = (rowData) => {
+    return dayjs(rowData.createdAt).format('DD/MM/YYYY HH:mm');
+  };
+
   return (
     <div>
-      <DataTable value={incidents} paginator rows={10} filters={filters} onFilter={(e) => setFilters(e.filters)} filterDisplay="row" globalFilterFields={['subject', 'description', 'location', 'status', 'userId']}>
+      <DataTable value={incidents} paginator rows={5} filters={filters} onFilter={(e) => setFilters(e.filters)} filterDisplay="row" globalFilterFields={['subject', 'description', 'location', 'status', 'userId']}>
         <Column field="subject" header="Subject" filter filterPlaceholder="Search by subject" />
         <Column field="description" header="Description" filter filterPlaceholder="Search by description" />
-        <Column field="location" header="Location"  filter filterPlaceholder="Search by location" />
+        <Column field="location" header="Location" filter filterPlaceholder="Search by location" />
         <Column field="status" header="Status" filter filterPlaceholder="Search by status" />
         <Column field="userId" header="User ID" filter filterPlaceholder="Search by user" />
+        <Column field="createdAt" header="Created At" body={dateBodyTemplate} filter filterPlaceholder="Search by time" />
         <Column body={imageBodyTemplate} header="Image" />
         <Column body={actionBodyTemplate} header="Actions" />
       </DataTable>
