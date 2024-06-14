@@ -28,14 +28,22 @@ const RegisterForm = ({
         <div className="w-[473.83px] flex flex-col gap-6  h-[760px] rounded-3xl border-[#BDBDBD] border-[1px] p-14 ">
           <header className="flex flex-col gap-4">
             <div className="flex items-center  text-[16px] leading-[24.52px] font-semibold content-center gap-3 text-[#F0402C]">
-              <img src={logo} alt="logo" className="mb-4 mt-5 sm:mt-0" />
+            <div className="flex  flex-col text-[16px] leading-[24.52px] font-semibold content-center  text-black">
+            <div className="flex flex-row items-baseline ">
+              <span
+                className="pi pi-building"
+                style={{ fontSize: "2.5rem" }}
+              ></span>{" "}
+              <h1 className="p-0 m-0">Incident! </h1>
             </div>
+
+            <h3 className="font-light">We are here to fix it!</h3>
+          </div>            </div>
             <h2 className="w-[318.88px] text-[18px] leading-[24.52px] text-[#333333] font-semibold">
-              Join thousands of learners from around the world
+            Together we improve our community
             </h2>
             <h3 className="text-[16px] leading-[21.79px] text-[#333333] font-normal">
-              Master web development by making real-life projects. There are
-              multiple paths for you to choose
+            Report incidents that need our attention
             </h3>
           </header>
           <main>
@@ -240,13 +248,7 @@ const RegisterForm = ({
             </div>
           </main>
         </div>
-        <footer className="pt-2 px-1 pb-12 flex justify-between w-[473.83px] text-[14px] leading-[19.07px] text-[#828282]">
-          <p className="font-normal">
-            created by{" "}
-            <span className="underline font-semibold">Jean Inofuente</span>
-          </p>
-          <p className="font-normal">devChallenges.io</p>
-        </footer>
+        
       </div>
     </>
   );

@@ -31,7 +31,6 @@ const Register = () => {
 
   return (
     <div>
-      <h1>Register</h1>
       <RegisterForm
       redirectToLogin={redirectToLogin}
         onSubmit={handleRegister}

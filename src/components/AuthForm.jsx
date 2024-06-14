@@ -2,21 +2,35 @@ import Google from "../assets/Google.svg";
 import Facebook from "../assets/Facebook.svg";
 import Twitter from "../assets/Twitter.svg";
 import Github from "../assets/Gihub.svg";
-import logo from "../assets/devchallenges.svg";
+import "primeicons/primeicons.css";
 import { NavLink } from "react-router-dom";
 
-const AuthForm = ({ onSubmit, buttonText, email, setEmail, password, setPassword }) => {
-  
+const AuthForm = ({
+  onSubmit,
+  buttonText,
+  email,
+  setEmail,
+  password,
+  setPassword,
+}) => {
   const handleOAuthLogin = (provider) => {
     window.location.href = `http://localhost:5000/api/auth/${provider}`;
   };
 
   return (
     <div className="flex justify-center content-center items-center font-NotoSans flex-col py-[27px] px-[72px] w-screen min-h-screen">
-      <div className="w-[473.83px] flex flex-col gap-6  h-[544.37px] rounded-3xl border-[#BDBDBD] border-[1px] p-14 ">
+      <div className="w-[473.83px] flex flex-col gap-6  h-[620px] rounded-3xl border-[#BDBDBD] border-[1px] p-14 ">
         <header className="flex flex-col gap-4">
-          <div className="flex items-center  text-[16px] leading-[24.52px] font-semibold content-center gap-3 text-[#F0402C]">
-            <img src={logo} alt="logo" className="mb-4 mt-5 sm:mt-0" />
+          <div className="flex  flex-col text-[16px] leading-[24.52px] font-semibold content-center text-black">
+            <div className="flex flex-row items-baseline ">
+              <span
+                className="pi pi-building"
+                style={{ fontSize: "2.5rem" }}
+              ></span>{" "}
+              <h1>Incident! </h1>
+            </div>
+
+            <h3 className="font-light">We are here to fix it!</h3>
           </div>
           <h2 className="w-[318.88px] text-[18px] leading-[24.52px] text-[#333333] font-semibold py-2">
             Login
@@ -154,14 +168,8 @@ const AuthForm = ({ onSubmit, buttonText, email, setEmail, password, setPassword
           </div>
         </main>
       </div>
-      <footer className="pt-2 px-1 pb-12 flex justify-between w-[473.83px] text-[14px] leading-[19.07px] text-[#828282]">
-        <p className="font-normal">
-          created by{" "}
-          <span className="underline font-semibold">Jean Inofuente</span>
-        </p>
-        <p className="font-normal">devChallenges.io</p>
-      </footer>
     </div>
-  );};
+  );
+};
 
 export default AuthForm;
