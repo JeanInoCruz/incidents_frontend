@@ -25,7 +25,7 @@ export const Options = ({ isActive }) => {
         >
           <img src={Myprofile} alt="logo" className="w-5 h-5" />
 
-          <h3>My Profile</h3>
+          <h3>Resident</h3>
         </button>
         <button
           onClick={() => navigate("/incidents")}

@@ -40,7 +40,7 @@ export const Header = () => {
           alt="profile picture"
         />
 
-        <h2>Name</h2>
+        <h2>Options</h2>
         <div className={`relative`}>
           <button
             onClick={handleIsActive}
