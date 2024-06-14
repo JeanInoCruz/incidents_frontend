@@ -29,9 +29,9 @@ export const Header = () => {
 
   return (
     <header className="items-center font-bold flex justify-between drop-shadow-2xl">
-      <div className=" flex flex-col justify-center content-center gap-3 text-[14px] text-[#F0402C]">
-        <h1>incidents Management</h1>
-        <h2>Home address: 123 Main Street, London, SW1A 1AA</h2>
+      <div className=" flex flex-col justify-center content-center gap-3 text-[14px] text-sky-600">
+        <h1 className="text-2xl">INCIDENTS MANAGEMENT</h1>
+        <h2 className="text-gray-400">Home address: 123 Main Street, London, SW1A 1AA</h2>
       </div>
       <div className="flex items-center content-center gap-4 text-[12px]">
         <img

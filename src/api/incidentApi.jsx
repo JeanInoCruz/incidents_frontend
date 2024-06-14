@@ -24,7 +24,7 @@ export const createIncident = (incidentData) => {
   formData.append("image", incidentData.image);
 
   return instance
-    .post("/incidents", formData)
+    .post("/incidents/incidents", formData)
     .then((response) => response.data);
 };
 

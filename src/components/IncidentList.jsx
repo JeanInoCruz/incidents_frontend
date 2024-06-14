@@ -4,10 +4,11 @@ import { deleteIncident } from '../api/incidentApi';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Button } from 'primereact/button';
-import { FilterMatchMode} from 'primereact/api';
+import { FilterMatchMode } from 'primereact/api';
 import 'primereact/resources/themes/bootstrap4-light-blue/theme.css';  
 import 'primereact/resources/themes/tailwind-light/theme.css';          
 import 'primeicons/primeicons.css';                        
+import EditIncidentModal from './EditIncidentModal';
 
 const IncidentList = ({ incidents, fetchIncidents }) => {
   const navigate = useNavigate();
@@ -19,6 +20,8 @@ const IncidentList = ({ incidents, fetchIncidents }) => {
     status: { value: null, matchMode: FilterMatchMode.CONTAINS },
     userId: { value: null, matchMode: FilterMatchMode.CONTAINS }
   });
+
+  const [selectedIncident, setSelectedIncident] = useState(null);
 
   const handleDelete = async (id) => {
     try {
@@ -32,7 +35,7 @@ const IncidentList = ({ incidents, fetchIncidents }) => {
   const actionBodyTemplate = (rowData) => {
     return (
       <React.Fragment>
-        <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => navigate(`/edit/${rowData.id}`)} />
+        <Button icon="pi pi-pencil" className="p-button-rounded p-button-success mr-2" onClick={() => setSelectedIncident(rowData)} />
         <Button icon="pi pi-trash" className="p-button-rounded p-button-danger" onClick={() => handleDelete(rowData.id)} />
       </React.Fragment>
     );
@@ -49,12 +52,20 @@ const IncidentList = ({ incidents, fetchIncidents }) => {
       <DataTable value={incidents} paginator rows={10} filters={filters} onFilter={(e) => setFilters(e.filters)} filterDisplay="row" globalFilterFields={['subject', 'description', 'location', 'status', 'userId']}>
         <Column field="subject" header="Subject" filter filterPlaceholder="Search by subject" />
         <Column field="description" header="Description" filter filterPlaceholder="Search by description" />
-        <Column field="location" header="Location" filter filterPlaceholder="Search by location" />
+        <Column field="location" header="Location"  filter filterPlaceholder="Search by location" />
         <Column field="status" header="Status" filter filterPlaceholder="Search by status" />
         <Column field="userId" header="User ID" filter filterPlaceholder="Search by user" />
         <Column body={imageBodyTemplate} header="Image" />
         <Column body={actionBodyTemplate} header="Actions" />
       </DataTable>
+      
+      {selectedIncident && (
+        <EditIncidentModal 
+          incident={selectedIncident} 
+          fetchIncidents={fetchIncidents} 
+          closeModal={() => setSelectedIncident(null)} 
+        />
+      )}
     </div>
   );
 };
